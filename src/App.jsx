@@ -1,28 +1,49 @@
-import "./App.css";
 import { Suspense, lazy } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import css from "./App.module.css";
+import { Route, Routes } from "react-router-dom";
+import { ThreeCircles } from "react-loader-spinner";
 import Navigation from "./components/Navigation/Navigation";
+// import HomePage from './pages/HomePage/HomePage';
+// import MoviesPage from './pages/MoviesPage/MoviesPage';
+// import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+// import MovieDetailsPage from './pages/MovieDetailsPage/MovieDetailsPage';
+// import MovieCast from './components/MovieCast/MovieCast';
+// import MovieReviews from './components/MovieReviews/MovieReviews';
 
 const HomePage = lazy(() => import("./components/pages/HomePage/HomePage"));
-const MoviesPage = lazy(() =>
-  import("./components/pages/MoviesPage/MoviesPage")
-);
 const MovieDetailsPage = lazy(() =>
   import("./components/pages/MoviesDetailsPage/MoviesDetailsPage")
 );
 const NotFoundPage = lazy(() =>
   import("./components/pages/NotFoundPage/NotFoundPage")
 );
+const MoviesPage = lazy(() =>
+  import("./components/pages/MoviesPage/MoviesPage")
+);
 const MovieCast = lazy(() => import("./components/MovieCast/MovieCast"));
 const MovieReviews = lazy(() =>
   import("./components/MovieReviews/MovieReviews")
 );
 
-const App = () => {
+function App() {
   return (
-    <Router>
+    <>
       <Navigation />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <div className={css.loader}>
+            <ThreeCircles
+              visible={true}
+              height="50"
+              width="50"
+              color="rgb(9, 217, 186)"
+              ariaLabel="three-circles-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
+          </div>
+        }
+      >
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/movies" element={<MoviesPage />} />
@@ -33,8 +54,8 @@ const App = () => {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
-    </Router>
+    </>
   );
-};
+}
 
 export default App;

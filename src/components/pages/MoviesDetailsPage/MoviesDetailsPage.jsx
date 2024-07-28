@@ -1,51 +1,102 @@
-import { useEffect, useState, Suspense } from "react";
-import { useParams, useLocation, Link, Outlet } from "react-router-dom";
-import { getMovieDetails } from "../../../api";
-import css from "./MoviesDetailPage.module.css";
+import { Suspense, useEffect, useRef, useState } from "react";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useParams,
+} from "react-router-dom";
+import { ThreeCircles } from "react-loader-spinner";
+import { fetchMovieDetails } from "../../../api";
+import css from "./MovieDetailsPage.module.css";
 
-const MoviesDetailPage = () => {
+const MovieDetailsPage = () => {
+  const [movie, setMovie] = useState([]);
   const { movieId } = useParams();
+
   const location = useLocation();
-  const [movie, setMovie] = useState(null);
 
+  const goBackRef = useRef(location?.state || "/movies");
   useEffect(() => {
-    getMovieDetails(movieId).then((data) => setMovie(data));
+    try {
+      const getData = async () => {
+        const data = await fetchMovieDetails(movieId);
+        setMovie(data);
+      };
+      getData();
+    } catch (error) {
+      console.log(error);
+    }
   }, [movieId]);
-
   if (!movie) {
-    return null;
+    return (
+      <div className={css.loader}>
+        <ThreeCircles
+          visible={true}
+          height="50"
+          width="50"
+          color="rgb(9, 217, 186)"
+          ariaLabel="three-circles-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      </div>
+    );
   }
 
-  const backLink = location.state?.from ?? "/movies";
-
   return (
-    <div className={css.div}>
-      <Link to={backLink} className={css.Link}>
-        Back
+    <>
+      <Link className={css.btn} to={goBackRef.current}>
+        Go back!
       </Link>
-      <h1 className={css.h1}>{movie.title}</h1>
-      <img
-        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-        alt={movie.title}
-      />
-      <p className={css.p}>{movie.overview}</p>
-      <ul className={css.ul}>
-        <li className={css.li}>
-          <Link to="cast" state={{ from: backLink }}>
-            Cast
-          </Link>
-        </li>
-        <li className={css.li}>
-          <Link to="reviews" state={{ from: backLink }}>
-            Reviews
-          </Link>
-        </li>
-      </ul>
-      <Suspense fallback={<div>Loading...</div>}>
+      <div className={css.div}>
+        <img
+          src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+          alt={movie.title}
+        />
+        <div className={css.details}>
+          <h3>{movie.title}</h3>
+          <p>
+            Overview:
+            <span>{movie.overview}</span>
+          </p>
+          <p>
+            Runtime:
+            <span>{movie.runtime}</span>
+          </p>
+          <p>
+            Popularity:
+            <span>{movie.popularity}</span>
+          </p>
+        </div>
+      </div>
+      <div className={css.nav}>
+        <NavLink className={css.navlink} to="cast">
+          Cast
+        </NavLink>
+        <NavLink className={css.navlink} to="reviews">
+          Reviews
+        </NavLink>
+      </div>
+      <Suspense
+        fallback={
+          <div className={css.loader}>
+            <ThreeCircles
+              visible={true}
+              height="50"
+              width="50"
+              color="rgb(9, 217, 186)"
+              ariaLabel="three-circles-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
+          </div>
+        }
+      >
         <Outlet />
       </Suspense>
-    </div>
+    </>
   );
 };
 
-export default MoviesDetailPage;
+export default MovieDetailsPage;

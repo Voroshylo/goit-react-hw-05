@@ -1,58 +1,61 @@
-import axios from "axios";
+import axios, { Axios } from "axios";
 
-const API_KEY = "75ba3df2b01fe21f69f94a772ea666e8";
+const API_TOKEN =
+  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NWJhM2RmMmIwMWZlMjFmNjlmOTRhNzcyZWE2NjZlOCIsIm5iZiI6MTcyMjE2NzMyNC42Mjg2MzQsInN1YiI6IjY2YTYyYjM1NzdhMGMzYmY1OTA3Y2YxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xCgk1g6xmNgxu-wQ6JHJYlzCnkrURJ8YvykAqRoR-Yk";
 const BASE_URL = "https://api.themoviedb.org/3";
 
-const fetchApi = async (url, options = {}) => {
-  try {
-    const response = await axios.get(url, {
-      ...options,
-      headers: {
-        Authorization: `Bearer ${API_KEY}`,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+const fetchTrendingMovies = async () => {
+  const res = await axios.get(`${BASE_URL}/trending/movie/day`, {
+    headers: {
+      Authorization: `Bearer ${API_TOKEN}`,
+    },
+  });
+  return res.data.results;
 };
 
-export const getTrendingMovies = () => {
-  return fetchApi(`${BASE_URL}/trending/movie/day`);
-};
-
-export const getMoviesByQuery = (query) => {
-  return fetchApi(`${BASE_URL}/search/movie`, {
+const searchMovies = async (query) => {
+  const response = await axios.get(`${BASE_URL}/search/movie`, {
+    headers: {
+      Authorization: `Bearer ${API_TOKEN}`,
+    },
     params: {
       query,
-      include_adult: false,
-      language: "en-US",
-      page: 1,
     },
   });
+  return response.data.results;
 };
 
-export const getMovieDetails = (movieId) => {
-  return fetchApi(`${BASE_URL}/movie/${movieId}`, {
-    params: {
-      language: "en-US",
+const fetchMovieDetails = async (movieId) => {
+  const res = await axios.get(`${BASE_URL}/movie/${movieId}`, {
+    headers: {
+      Authorization: `Bearer ${API_TOKEN}`,
     },
   });
+  return res.data;
 };
 
-export const getMovieCast = (movieId) => {
-  return fetchApi(`${BASE_URL}/movie/${movieId}/credits`, {
-    params: {
-      language: "en-US",
+const fetchMovieCredits = async (movieId) => {
+  const res = await axios.get(`${BASE_URL}/movie/${movieId}/credits`, {
+    headers: {
+      Authorization: `Bearer ${API_TOKEN}`,
     },
   });
+  return res.data.cast;
 };
 
-export const getMovieReviews = (movieId) => {
-  return fetch(`${BASE_URL}/movie/${movieId}/reviews`, {
-    params: {
-      language: "en-US",
+const fetchMovieReviews = async (movieId) => {
+  const response = await axios.get(`${BASE_URL}/movie/${movieId}/reviews`, {
+    headers: {
+      Authorization: `Bearer ${API_TOKEN}`,
     },
   });
+  return response.data.results;
+};
+
+export {
+  fetchTrendingMovies,
+  searchMovies,
+  fetchMovieDetails,
+  fetchMovieCredits,
+  fetchMovieReviews,
 };
