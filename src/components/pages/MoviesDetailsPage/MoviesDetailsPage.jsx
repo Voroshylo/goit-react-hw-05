@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import { ThreeCircles } from "react-loader-spinner";
 import { fetchMovieDetails } from "../../../api";
-import css from "./MovieDetailsPage.module.css";
+import css from "./MoviesDetailPage.module.css";
 
 const MovieDetailsPage = () => {
   const [movie, setMovie] = useState([]);
