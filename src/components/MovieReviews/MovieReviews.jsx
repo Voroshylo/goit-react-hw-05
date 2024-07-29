@@ -30,20 +30,23 @@ const MovieReviews = () => {
   }, [movieId]);
 
   return (
-    <div>
+    <div className={css.div}>
       {error && <p className={css.error}>{error}</p>}
       {noReviews && !error && (
         <p className={css.error}>No reviews available for this movie.</p>
       )}
-      <ul>
-        {reviews.map((review) => (
-          <li key={review.id}>
-            <p className={css.p}>
-              <span>Author: {review.author}:</span> {review.content}
-            </p>
-          </li>
-        ))}
-      </ul>
+      <div className={css.divUl}>
+        <ul className={css.ul}>
+          {reviews.map((review) => (
+            <li className={css.li} key={review.id}>
+              <p className={css.p}>
+                <span className={css.span}>Author: {review.author}:</span>{" "}
+                {review.content}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

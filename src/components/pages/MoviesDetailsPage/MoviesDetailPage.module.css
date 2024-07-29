@@ -1,0 +1,84 @@
+.div {
+  max-width: 1280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  background-image: url(../../../img/2.jpg);
+}
+
+.img {
+  width: 320px;
+}
+.h3 {
+  color: rgb(255, 193, 38);
+  text-align: center;
+  font-size: 36px;
+}
+
+.p {
+  color: rgb(255, 193, 38);
+  margin-top: 8px;
+}
+.span {
+  color: rgb(255, 243, 73);
+}
+
+.cast {
+  color: aqua;
+  text-decoration: none;
+  margin-left: 0;
+  font-size: 48px;
+  &:hover,
+  &:focus {
+    text-shadow: 15px 9px 5px aqua;
+  }
+}
+.reviews {
+  color: aqua;
+  text-decoration: none;
+  margin-right: 0;
+  font-size: 48px;
+  &:hover,
+  &:focus {
+    text-shadow: 15px 9px 5px aqua;
+  }
+}
+.nav {
+  width: 1280px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.btn {
+  border: 1px solid #131212;
+  border-radius: 8px;
+  padding: 0 1.2em;
+  background-color: #131212;
+  color: aqua;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  font-size: 20px;
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    border-color: aqua;
+  }
+}
+
+.divLink {
+  width: 1280px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}

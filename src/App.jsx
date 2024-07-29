@@ -1,7 +1,7 @@
 import { Suspense, lazy } from "react";
 import css from "./App.module.css";
 import { Route, Routes } from "react-router-dom";
-import { ThreeCircles } from "react-loader-spinner";
+import { BallTriangle } from "react-loader-spinner";
 import Navigation from "./components/Navigation/Navigation";
 
 const HomePage = lazy(() => import("./components/pages/HomePage/HomePage"));
@@ -26,14 +26,15 @@ function App() {
       <Suspense
         fallback={
           <div className={css.loader}>
-            <ThreeCircles
-              visible={true}
-              height="50"
-              width="50"
-              color="rgb(9, 217, 186)"
-              ariaLabel="three-circles-loading"
+            <BallTriangle
+              height={100}
+              width={100}
+              radius={5}
+              color="rgb(255, 193, 38)"
+              ariaLabel="ball-triangle-loading"
               wrapperStyle={{}}
               wrapperClass=""
+              visible={true}
             />
           </div>
         }

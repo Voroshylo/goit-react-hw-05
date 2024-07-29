@@ -32,13 +32,15 @@ const MovieCast = () => {
     <div>
       {error && <p className={css.error}>{error}</p>}
       {noCast && !error && <p className={css.error}>Sorry, cast is missing.</p>}
-      <ul>
-        {cast.map((actor) => (
-          <li key={actor.cast_id}>
-            <p className={css.p}>{actor.name}</p>
-          </li>
-        ))}
-      </ul>
+      <div className={css.divUl}>
+        <ul>
+          {cast.map((actor) => (
+            <li key={actor.cast_id}>
+              <p className={css.p}>{actor.name}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

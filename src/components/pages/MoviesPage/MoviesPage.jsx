@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import MovieList from "../../MovieList/MovieList";
 import { searchMovies } from "../../../api";
-import s from "./MoviesPage.module.css";
+import css from "./MoviesPage.module.css";
 import { useLocation, useSearchParams } from "react-router-dom";
 
 const MoviesPage = () => {
@@ -56,20 +56,23 @@ const MoviesPage = () => {
   };
 
   return (
-    <div className={s.searchMovies}>
-      <h2>Search Movies</h2>
-      <form className={s.form} onSubmit={onSubmit}>
+    <div className={css.div}>
+      <h2 className={css.h2}>Search Movies</h2>
+      <form className={css.form} onSubmit={onSubmit}>
         <input
+          className={css.input}
           placeholder="Enter search movie..."
           type="search"
           value={query}
           onChange={onChange}
         />
-        <button type="submit">Search</button>
+        <button className={css.btn} type="submit">
+          Search
+        </button>
       </form>
-      {error && <p className={s.error}>{error}</p>}
+      {error && <p className={css.error}>{error}</p>}
       {noMovies && !error && (
-        <p className={s.error}>Do not found movies, Please Try again!</p>
+        <p className={css.error}>Do not found movies, Please Try again!</p>
       )}
       {movies.length > 0 && <MovieList movies={movies} />}
     </div>
