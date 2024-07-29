@@ -30,9 +30,7 @@ const MovieDetailsPage = () => {
   }, [movieId]);
   if (!movie) {
     return (
-      <div
-        style={{ display: "flex", justifyContent: "center", margin: "20px" }}
-      >
+      <div className={css.loader}>
         <BallTriangle
           height={100}
           width={100}
