@@ -20,7 +20,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div>
+    <div className={css.div}>
       <h2 className={css.title}>The most current movies:</h2>
       {error ? <p>{error}</p> : <MoviesList movies={movies} />}
     </div>
