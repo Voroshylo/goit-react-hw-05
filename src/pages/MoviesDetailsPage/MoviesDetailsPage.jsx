@@ -7,7 +7,7 @@ import {
   useParams,
 } from "react-router-dom";
 import { BallTriangle } from "react-loader-spinner";
-import { fetchMovieDetails } from "../../../api";
+import { fetchMovieDetails } from "../../api";
 import css from "./MoviesDetailPage.module.css";
 
 const MovieDetailsPage = () => {

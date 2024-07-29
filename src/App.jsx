@@ -4,16 +4,12 @@ import { Route, Routes } from "react-router-dom";
 import { BallTriangle } from "react-loader-spinner";
 import Navigation from "./components/Navigation/Navigation";
 
-const HomePage = lazy(() => import("./components/pages/HomePage/HomePage"));
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const MovieDetailsPage = lazy(() =>
-  import("./components/pages/MoviesDetailsPage/MoviesDetailsPage")
+  import("./pages/MoviesDetailsPage/MoviesDetailsPage")
 );
-const NotFoundPage = lazy(() =>
-  import("./components/pages/NotFoundPage/NotFoundPage")
-);
-const MoviesPage = lazy(() =>
-  import("./components/pages/MoviesPage/MoviesPage")
-);
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
+const MoviesPage = lazy(() => import("./pages/MoviesPage/MoviesPage"));
 const MovieCast = lazy(() => import("./components/MovieCast/MovieCast"));
 const MovieReviews = lazy(() =>
   import("./components/MovieReviews/MovieReviews")
