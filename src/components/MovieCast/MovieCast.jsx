@@ -1,47 +1,50 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchMovieCredits } from "../../api";
+import getImageUrl from "../MovieList/MoviesImg";
 import css from "./MovieCast.module.css";
+
 const MovieCast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
-  const [error, setError] = useState(null);
-  const [noCast, setNoCast] = useState(false);
 
   useEffect(() => {
-    const fetchCredits = async () => {
-      try {
-        const data = await fetchMovieCredits(movieId);
-        if (data.length === 0) {
-          setNoCast(true);
-        } else {
-          setCast(data);
-          setNoCast(false);
+    const fetchMovieCast = async () => {
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/movie/${movieId}/credits`,
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0Mzk2YmI2ZmE5ZGYzYTZkYzFjNWY1YWQ5ODVhMGI5MCIsIm5iZiI6MTcyMjA3NzQwMS4xNDQwODksInN1YiI6IjY2YTRjZjU3ZDhhNTJkNzJjZjg3Y2ZjZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gGSqTtFneYLfE3HZ0NK6NWEi5UXzyRirlVKnPCIsFiU`,
+          },
         }
-        setError(null);
-      } catch (error) {
-        setError("Failed to fetch movie credits.");
-        setNoCast(false);
-      }
+      );
+      setCast(response.data.cast);
     };
-
-    fetchCredits();
+    fetchMovieCast();
   }, [movieId]);
 
   return (
-    <div>
-      {error && <p className={css.error}>{error}</p>}
-      {noCast && !error && <p className={css.error}>Sorry, cast is missing.</p>}
-      <div className={css.divUl}>
-        <ul>
+    <>
+      <h2 className={css.cast}>Cast</h2>
+      <div className={css.div}>
+        <ul className={css.ul}>
           {cast.map((actor) => (
-            <li key={actor.cast_id}>
-              <p className={css.p}>{actor.name}</p>
+            <li key={actor.cast_id} className={css.li}>
+              <img
+                src={getImageUrl(actor.profile_path)}
+                alt={actor.name}
+                width="150"
+              />
+              <ul className={css.text}>
+                <li>Name: {actor.name}</li>
+                <li>Role: {actor.character}</li>
+                <li>Popularity: {actor.popularity} likes</li>
+              </ul>
             </li>
           ))}
         </ul>
       </div>
-    </div>
+    </>
   );
 };
 
