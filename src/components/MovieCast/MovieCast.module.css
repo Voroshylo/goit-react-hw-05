@@ -20,7 +20,7 @@
 }
 .text {
   color: wheat;
-  text-align: center;
+  /* text-align: center; */
 }
 .cast {
   color: wheat;
@@ -37,6 +37,9 @@
     padding-left: 32px;
     padding-right: 32px;
   }
+  .text {
+    /* text-align: center; */
+  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -51,5 +54,8 @@
   }
   .li {
     width: calc((100% - (3 * 24px)) / 4);
+  }
+  .text {
+    /* text-align: center; */
   }
 }

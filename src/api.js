@@ -52,6 +52,15 @@ const fetchMovieReviews = async (movieId) => {
   return response.data.results;
 };
 
+// const fetchActorDetails = async (actorId) => {
+//   const res = await axios.get(`${BASE_URL}/person/${actorId}`, {
+//     headers: {
+//       Authorization: `Bearer ${API_TOKEN}`,
+//     },
+//   });
+//   return res.data;
+// };
+
 export {
   fetchTrendingMovies,
   searchMovies,
