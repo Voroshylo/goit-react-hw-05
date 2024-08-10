@@ -5,10 +5,18 @@
   padding-right: 20px;
 }
 
+.cast {
+  margin-bottom: 20px;
+}
 .ul {
   display: flex;
-  gap: 15px;
-  list-style: none;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 24px;
+  row-gap: 72px;
+}
+.li {
+  width: calc((100% - 24px) / 2);
 }
 .text {
   color: wheat;
