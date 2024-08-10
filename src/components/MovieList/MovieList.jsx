@@ -8,17 +8,20 @@ const MovieList = ({ movies }) => {
     <ul className={css.ul}>
       {movies.map((movie) => (
         <li className={css.li} key={movie.id}>
-          <Link
-            className={css.link}
-            to={`/movies/${movie.id}`}
-            state={location}
-          >
-            <img
-              src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-              alt={movie.title}
-            />
-            <p className={css.p}>{movie.title}</p>
-          </Link>
+          <div className={css.divLi}>
+            <Link
+              className={css.link}
+              to={`/movies/${movie.id}`}
+              state={location}
+            >
+              <img
+                className={css.img}
+                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <p className={css.p}>{movie.title}</p>
+            </Link>
+          </div>
         </li>
       ))}
     </ul>

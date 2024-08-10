@@ -1,16 +1,18 @@
 .div {
-  max-width: 1280px;
+  max-width: 360px;
   margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .ul {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
   gap: 15px;
   list-style: none;
 }
 .text {
   color: wheat;
+  text-align: center;
 }
 .cast {
   color: wheat;
@@ -19,4 +21,27 @@
   color: red;
   text-align: center;
   font-size: 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .div {
+    max-width: 768px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .div {
+    max-width: 1280px;
+  }
+  .ul {
+    column-gap: 24px;
+    row-gap: 48px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .li {
+    width: calc((100% - (3 * 24px)) / 4);
+  }
 }

@@ -1,6 +1,15 @@
-.divUl {
-  max-width: 1280px;
+.div {
+  max-width: 360px;
   margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.divUl {
+  max-width: 360px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .p {
@@ -11,4 +20,24 @@
   color: red;
   text-align: center;
   font-size: 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .div {
+    max-width: 768px;
+  }
+  .divUl {
+    max-width: 768px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .div {
+    max-width: 1280px;
+  }
+  .divUl {
+    max-width: 1280px;
+  }
 }
