@@ -35,11 +35,13 @@ const MovieCast = () => {
                 alt={actor.name}
                 width="150"
               />
-              <ul className={css.text}>
-                <li>Name: {actor.name}</li>
-                <li>Role: {actor.character}</li>
-                <li>Popularity: {actor.popularity} likes</li>
-              </ul>
+              <div className={css.divText}>
+                <ul className={css.text}>
+                  <li>Name: {actor.name}</li>
+                  <li>Role: {actor.character}</li>
+                  <li>Popularity: {actor.popularity} likes</li>
+                </ul>
+              </div>
             </li>
           ))}
         </ul>
