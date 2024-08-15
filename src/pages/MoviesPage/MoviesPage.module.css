@@ -30,7 +30,7 @@
 .input {
   width: 240px;
   border: 1px solid transparent;
-  border-radius: 8px 0 0 8px;
+  border-radius: 50px 0 0 50px;
   background-color: #131212;
   color: white;
 }
@@ -42,25 +42,22 @@
 
 .btn {
   border: 1px solid #131212;
-  border-radius: 0 8px 8px 0;
+  border-radius: 0 50px 50px 0;
   padding: 0 1.2em;
   background-color: #131212;
   color: white;
   cursor: pointer;
   transition: border-color 0.25s;
   font-size: 20px;
-}
-
-.btn:hover {
-  border-color: rgb(255, 193, 38);
-}
-
-.btn:focus {
-  outline: 4px auto -webkit-focus-ring-color;
+  &:hover,
+  &:focus {
+    border-color: rgb(255, 193, 38);
+  }
 }
 
 .error {
   color: red;
+  margin: 0 auto;
 }
 
 .form {

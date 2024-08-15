@@ -97,7 +97,7 @@
 }
 
 .loader {
-  max-width: 1280px;
+  max-width: 360px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -122,6 +122,9 @@
     padding-left: 32px;
     padding-right: 32px;
   }
+  .loader {
+    max-width: 768px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -129,6 +132,9 @@
     max-width: 1280px;
   }
   .divLink {
+    max-width: 1280px;
+  }
+  .loader {
     max-width: 1280px;
   }
 }
